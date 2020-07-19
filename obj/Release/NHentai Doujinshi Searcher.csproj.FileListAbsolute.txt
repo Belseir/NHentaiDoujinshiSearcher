@@ -1,0 +1,23 @@
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Release\NHentai Doujinshi Searcher.exe.config
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Release\NHentai Doujinshi Searcher.exe.manifest
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Release\NHentai Doujinshi Searcher.application
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Release\NHentai Doujinshi Searcher.exe
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Release\NHentai Doujinshi Searcher.pdb
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Release\Newtonsoft.Json.dll
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Release\NHentaiSharp.dll
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Release\Newtonsoft.Json.xml
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.csprojAssemblyReference.cache
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\MainWindow.g.cs
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\App.g.cs
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher_MarkupCompile.cache
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher_MarkupCompile.lref
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\MainWindow.baml
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.g.resources
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai_Doujinshi_Searcher.Properties.Resources.resources
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.csproj.GenerateResource.cache
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.csproj.CoreCompileInputs.cache
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.exe.manifest
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.application
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.csproj.CopyComplete
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.exe
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.pdb

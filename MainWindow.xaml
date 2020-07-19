@@ -1,0 +1,367 @@
+﻿<Window x:Class="NHentai_Doujinshi_Searcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NHentai_Doujinshi_Searcher"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Title="NHentai Doujinshi Searcher" Height="720" Width="1280">
+
+    <Window.Resources>
+        <Brush x:Key="DefaultColor">#ffec2854</Brush>
+
+        <Style x:Key="{x:Type CheckBox}" TargetType="CheckBox">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Border x:Name="Border"  
+                                Width="25" 
+                                Height="25" 
+                                CornerRadius="3" 
+                                Background="{x:Null}"
+                                BorderThickness="2"
+                                BorderBrush="{DynamicResource DefaultColor}">
+                                    <Path 
+                                    Width="25" Height="25" 
+                                    x:Name="CheckMark"
+                                    SnapsToDevicePixels="False" 
+                                    Stroke="#ffec2854"
+                                    StrokeThickness="2"
+                                    Data="M5,5 L15,15 M5,15 L15,5"/>
+                                </Border>
+                            </BulletDecorator.Bullet>
+                            <ContentPresenter Margin="4,0,0,0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            RecognizesAccessKey="True"/>
+                        </BulletDecorator>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="false">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="#ffec2854" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="#ff8D1831" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#ff8D1831" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="Tag">
+            <Setter Property="Background" Value="#FF595959"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+        <Rectangle Fill="#FF1F1F1F" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="200"/>
+        <Rectangle Fill="#FF111111" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="1074" Margin="200,0,0,0"/>
+
+        <Grid Margin="0,0,1074,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="0"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="230.33" />
+                <RowDefinition Height="230.33" />
+                <RowDefinition Height="230.33" />
+            </Grid.RowDefinitions>
+
+            <Button x:Name="btnSettings" Grid.Column="0" Grid.Row="1" Click="ShowSettings" Cursor="Hand" Margin="30,33">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="SettingsButton.png" Margin="12,13,12,12"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button x:Name="btnSearch" Grid.Column="0" Grid.Row="0" Click="StartSearch" Cursor="Hand" Margin="30,33">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image x:Name="btnSearch_Image" Source="SearchButton.png" Margin="12,13,12,12"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button x:Name="btnNHentai" Grid.Column="0" Grid.Row="2" Click="RedirectButton_Click" Cursor="Hand" Margin="30,33">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="NHentaiButton.png" Margin="12,13,12,12"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+
+        <Grid x:Name="SettingMenu" Visibility="Hidden">
+            <Grid x:Name="Settings" Margin="1060,0,0,497">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Settings" FontFamily="Noto Sans Bold" Foreground="{DynamicResource DefaultColor}" FontWeight="UltraBold" Margin="61,-11,25,23" FontSize="24" Grid.RowSpan="2"/>
+                <CheckBox x:Name="AddTags" Content="Add tags" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Top" Grid.Row="1" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource DefaultColor}" FontSize="16" Width="146" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked"/>
+                <CheckBox x:Name="ExcludeTags" Content="Exclude tags" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Top" Grid.Row="2" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource DefaultColor}" FontSize="16" Width="185" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked"/>
+                <CheckBox x:Name="AddCharacters" Content="Add characters" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Top" Grid.Row="3" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource DefaultColor}" FontSize="16" Width="219" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked"/>
+                <CheckBox x:Name="AddParodies" Content="Add parodies" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Top" Grid.Row="4" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource DefaultColor}" FontSize="16" Width="192" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked"/>
+                <CheckBox x:Name="AddLanguages" Content="Add languages" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Top" Grid.Row="5" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource DefaultColor}" FontSize="16" Width="209" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked"/>
+            </Grid>
+
+            <Grid x:Name="Add_Tags" Margin="262,-10,628,223" Visibility="Hidden">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="94"/>
+                    <ColumnDefinition Width="94"/>
+                    <ColumnDefinition Width="94"/>
+                    <ColumnDefinition Width="94"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Looking For Tags" FontFamily="Noto Sans Bold" Foreground="{DynamicResource DefaultColor}" FontWeight="UltraBold" Grid.ColumnSpan="4" Margin="82,0,82,12" FontSize="24" Grid.RowSpan="2"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="1" Grid.Column="0" Content="Ahegao" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="1" Grid.Column="1" Content="Anal" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="1" Grid.Column="2" Content="Big Ass" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="1" Grid.Column="3" Content="Big Breasts" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="2" Grid.Column="0" Content="Blindfold" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="2" Grid.Column="1" Content="Blowjob" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="2" Grid.Column="2" Content="Bondage" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="2" Grid.Column="3" Content="Bukkake" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="3" Grid.Column="0" Content="Bunny Girl" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="3" Grid.Column="1" Content="Catgirl" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="3" Grid.Column="2" Content="Crossdressing" FontSize="12" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="3" Grid.Column="3" Content="Cunnilingus" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="4" Grid.Column="0" Content="Deepthroat" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="4" Grid.Column="1" Content="Defloration" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="4" Grid.Column="2" Content="Demon Girl" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="4" Grid.Column="3" Content="Elf" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="5" Grid.Column="0" Content="Exhibitionism" FontSize="12" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="5" Grid.Column="1" Content="Femdom" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="5" Grid.Column="2" Content="Footjob" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="5" Grid.Column="3" Content="Fox Girl" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="6" Grid.Column="0" Content="Futanari" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="6" Grid.Column="1" Content="Glasses" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="6" Grid.Column="2" Content="Group" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="6" Grid.Column="3" Content="Handjob" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="7" Grid.Column="0" Content="Harem" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="7" Grid.Column="1" Content="Incest" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="7" Grid.Column="2" Content="Kimono" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="7" Grid.Column="3" Content="Lolicon" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="8" Grid.Column="0" Content="Maid" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="8" Grid.Column="1" Content="Milf" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="8" Grid.Column="2" Content="Mindbreak" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="8" Grid.Column="3" Content="Monster Girl" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="9" Grid.Column="0" Content="Nakadashi" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="9" Grid.Column="1" Content="Netorare" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="9" Grid.Column="2" Content="Oppai Loli" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="9" Grid.Column="3" Content="Paizuri" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="10" Grid.Column="0" Content="Pantyhose" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="10" Grid.Column="1" Content="Rape" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="10" Grid.Column="2" Content="SchoolGirl Uniform"  FontSize="9" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="10" Grid.Column="3" Content="Shotacon" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="11" Grid.Column="0" Content="Sleeping" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="11" Grid.Column="1" Content="Small Breasts" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="11" Grid.Column="2" Content="Sole Female" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="11" Grid.Column="3" Content="Sole Male" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="12" Grid.Column="0" Content="Stockings" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="12" Grid.Column="1" Content="Swimsuit" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="12" Grid.Column="2" Content="Tentacles" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="12" Grid.Column="3" Content="Tomboy" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="13" Grid.Column="0" Content="Tomgirl" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="13" Grid.Column="1" Content="Uncensored" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="13" Grid.Column="2" Content="Yaoi" Click="AddButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="13" Grid.Column="3" Content="Yuri" Click="AddButton_Click"/>
+
+                <TextBox x:Name="EntryCustomTag" Grid.Row="14" Grid.ColumnSpan="4" Margin="8,4" Foreground="White" Background="{DynamicResource DefaultColor}" BorderBrush="Black" FontWeight="Bold" TextAlignment="Center"/>
+                <Button x:Name="CustomAdd" Style="{StaticResource Tag}" Content="Add Custom Tag" Margin="2,1,0,0" Grid.Row="15" Grid.ColumnSpan="2" Grid.Column="1" Height="27" Width="185" Click="EntryButton_Click"/>
+            </Grid>
+
+            <Grid x:Name="Exclude_Tags" Margin="702,-10,188,223" Visibility="Hidden">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="94"/>
+                    <ColumnDefinition Width="94"/>
+                    <ColumnDefinition Width="94"/>
+                    <ColumnDefinition Width="94"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Exclude Tags From Search" FontFamily="Noto Sans Bold" Foreground="{DynamicResource DefaultColor}" FontWeight="UltraBold" Grid.ColumnSpan="4" Margin="27,0,26,12" FontSize="24" Grid.RowSpan="2"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="1" Grid.Column="0" Content="Ahegao" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="1" Grid.Column="1" Content="Anal" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="1" Grid.Column="2" Content="Big Ass" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="1" Grid.Column="3" Content="Big Breasts" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="2" Grid.Column="0" Content="Blindfold" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="2" Grid.Column="1" Content="Blowjob" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="2" Grid.Column="2" Content="Bondage" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="2" Grid.Column="3" Content="Bukkake" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="3" Grid.Column="0" Content="Bunny Girl" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="3" Grid.Column="1" Content="Catgirl" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="3" Grid.Column="2" Content="Crossdressing" FontSize="12" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="3" Grid.Column="3" Content="Cunnilingus" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="4" Grid.Column="0" Content="Deepthroat" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="4" Grid.Column="1" Content="Defloration" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="4" Grid.Column="2" Content="Demon Girl" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="4" Grid.Column="3" Content="Elf" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="5" Grid.Column="0" Content="Exhibitionism" FontSize="12" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="5" Grid.Column="1" Content="Femdom" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="5" Grid.Column="2" Content="Footjob" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="5" Grid.Column="3" Content="Fox Girl" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="6" Grid.Column="0" Content="Futanari" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="6" Grid.Column="1" Content="Glasses" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="6" Grid.Column="2" Content="Group" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="6" Grid.Column="3" Content="Handjob" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="7" Grid.Column="0" Content="Harem" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="7" Grid.Column="1" Content="Incest" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="7" Grid.Column="2" Content="Kimono" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="7" Grid.Column="3" Content="Lolicon" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="8" Grid.Column="0" Content="Maid" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="8" Grid.Column="1" Content="Milf" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="8" Grid.Column="2" Content="Mindbreak" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="8" Grid.Column="3" Content="Monster Girl" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="9" Grid.Column="0" Content="Nakadashi" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="9" Grid.Column="1" Content="Netorare" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="9" Grid.Column="2" Content="Oppai Loli" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="9" Grid.Column="3" Content="Paizuri" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="10" Grid.Column="0" Content="Pantyhose" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="10" Grid.Column="1" Content="Rape" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="10" Grid.Column="2" Content="SchoolGirl Uniform"  FontSize="9" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="10" Grid.Column="3" Content="Shotacon" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="11" Grid.Column="0" Content="Sleeping" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="11" Grid.Column="1" Content="Small Breasts" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="11" Grid.Column="2" Content="Sole Female" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="11" Grid.Column="3" Content="Sole Male" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="12" Grid.Column="0" Content="Stockings" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="12" Grid.Column="1" Content="Swimsuit" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="12" Grid.Column="2" Content="Tentacles" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="12" Grid.Column="3" Content="Tomboy" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="13" Grid.Column="0" Content="Tomgirl" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="13" Grid.Column="1" Content="Uncensored" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="13" Grid.Column="2" Content="Yaoi" Click="ExcludeButton_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="13" Grid.Column="3" Content="Yuri" Click="ExcludeButton_Click"/>
+
+                <TextBox x:Name="EntryCustomExclude" Grid.Row="14" Grid.ColumnSpan="4" Margin="8,4" Foreground="White" Background="{DynamicResource DefaultColor}" BorderBrush="Black" FontWeight="Bold" TextAlignment="Center"/>
+                <Button x:Name="CustomExclude" Style="{StaticResource Tag}" Content="Exclude Custom Tag" Margin="2,1,0,0" Grid.Row="15" Grid.ColumnSpan="2" Grid.Column="1" Height="27" Width="185" Click="EntryButton_Click"/>
+            </Grid>
+
+            <Grid x:Name="Add_Character" Visibility="Hidden">
+                <Label Content="Character" FontFamily="Noto Sans Bold" Foreground="{DynamicResource DefaultColor}" FontWeight="UltraBold" Margin="380,456,749,187" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
+                <TextBox x:Name="CharacterEntry" Margin="270,494,640,167" Foreground="White" Background="{DynamicResource DefaultColor}" BorderBrush="Black" FontWeight="Bold" TextAlignment="Center"/>
+                <Button x:Name="CharacterAdd" Style="{StaticResource Tag}" Content="Add Character" Margin="360,529,0,0" Height="27" Width="184" Click="EntryButton_Click"/>
+            </Grid>
+
+            <Grid x:Name="Add_Parody" Visibility="Hidden">
+                <Label Content="Parody" FontFamily="Noto Sans Bold" Foreground="{DynamicResource DefaultColor}" FontWeight="UltraBold" Margin="839,456,329,179" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
+                <TextBox x:Name="ParodyEntry" Margin="710,494,200,167" Foreground="White" Background="{DynamicResource DefaultColor}" BorderBrush="Black" FontWeight="Bold" TextAlignment="Center"/>
+                <Button x:Name="ParodyAdd" Style="{StaticResource Tag}" Content="Add Parody" Margin="800,529,0,0" Height="27" Width="184" Click="EntryButton_Click"/>
+            </Grid>
+
+            <Grid x:Name="Add_Language" Margin="531,561,448,48" Visibility="Hidden">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="94"/>
+                    <ColumnDefinition Width="94"/>
+                    <ColumnDefinition Width="94"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="28"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Languages" FontFamily="Noto Sans Bold" Foreground="{DynamicResource DefaultColor}" FontWeight="UltraBold" Grid.ColumnSpan="3" Margin="77,0,58,12" FontSize="24" Grid.RowSpan="2"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="1" Grid.Column="0" Content="English" Click="AddLanguage_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="1" Grid.Column="1" Content="Japanese" Click="AddLanguage_Click"/>
+                <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="1" Grid.Column="2" Content="Chinese" Click="AddLanguage_Click"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="SearchResults" Visibility="Hidden">
+            <Image x:Name="DoujinshiCover" HorizontalAlignment="Left" Height="597" VerticalAlignment="Top" Width="437" Margin="242,40,0,0"/>
+            <Label Content="Title:" FontFamily="Noto Sans Bold" Foreground="{DynamicResource DefaultColor}" FontWeight="UltraBold" Margin="682,20,431,596" FontSize="48"/>
+            <TextBlock x:Name="DoujinshiTitle" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="828,35,0,0" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="White" FontSize="24" TextWrapping="Wrap" Width="396" Height="114"/>
+            <Label Content="Code:" FontFamily="Noto Sans Bold" Foreground="{DynamicResource DefaultColor}" FontWeight="UltraBold" Margin="682,140,428,481" FontSize="48"/>
+            <TextBlock x:Name="DoujinshiCode" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="837,154,0,0" FontFamily="#Noto Sans Bold" Foreground="White" FontSize="40" TextWrapping="Wrap" Width="185" Height="56" FontWeight="Bold" LineHeight="6"/>
+            <Label Content="Favourites:" FontFamily="Noto Sans Bold" Foreground="{DynamicResource DefaultColor}" FontWeight="UltraBold" Margin="685,252,289,348" FontSize="48"/>
+            <TextBlock x:Name="DoujinshiFavourites" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="985,266,0,0" FontFamily="#Noto Sans Bold" Foreground="White" FontSize="40" TextWrapping="Wrap" Width="273" Height="53" FontWeight="Bold" LineHeight="6"/>
+            <Button x:Name="btnDoujinshiGo" Content="Go To Doujinshi" HorizontalAlignment="Left" Margin="713,470,0,0" VerticalAlignment="Top" Width="518" Height="88" Background="{DynamicResource DefaultColor}" Foreground="White" FontFamily="Noto Sans Bold" FontSize="60" Click="RedirectButton_Click"/>
+        </Grid>
+
+        <Button x:Name="btnGithub" Click="RedirectButton_Click" Cursor="Hand" Margin="1085,591,20,20">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-0" Width="186" Height="89">
+                        <Image Name="imgGithub" Source="GithubButton.png" Margin="12,13,12,12" Height="62" Width="211"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
+</Window>
