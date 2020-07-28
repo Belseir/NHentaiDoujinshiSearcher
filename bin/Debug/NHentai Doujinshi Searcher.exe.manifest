@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NHentai Doujinshi Searcher.exe" size="287216">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NHentai Doujinshi Searcher.exe" size="286192">
       <assemblyIdentity name="NHentai Doujinshi Searcher" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>bXQqwDLj1Q7lHUIL/qsE/cz9pzpksU5it2XPCODuIRw=</dsig:DigestValue>
+        <dsig:DigestValue>4Xg5524HXOUNm/i/SpwHiIK9MPFJXXPEbo3VJAse3Jk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

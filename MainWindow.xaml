@@ -351,7 +351,8 @@
             <TextBlock x:Name="DoujinshiCode" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="837,154,0,0" FontFamily="#Noto Sans Bold" Foreground="White" FontSize="40" TextWrapping="Wrap" Width="185" Height="56" FontWeight="Bold" LineHeight="6"/>
             <Label Content="Favourites:" FontFamily="Noto Sans Bold" Foreground="{DynamicResource DefaultColor}" FontWeight="UltraBold" Margin="685,252,289,348" FontSize="48"/>
             <TextBlock x:Name="DoujinshiFavourites" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="985,266,0,0" FontFamily="#Noto Sans Bold" Foreground="White" FontSize="40" TextWrapping="Wrap" Width="273" Height="53" FontWeight="Bold" LineHeight="6"/>
-            <Button x:Name="btnDoujinshiGo" Content="Go To Doujinshi" HorizontalAlignment="Left" Margin="713,470,0,0" VerticalAlignment="Top" Width="518" Height="88" Background="{DynamicResource DefaultColor}" Foreground="White" FontFamily="Noto Sans Bold" FontSize="60" Click="RedirectButton_Click"/>
+            <Button x:Name="btnDoujinshiGo" Content="Go To Doujinshi" HorizontalAlignment="Left" Margin="713,371,0,0" VerticalAlignment="Top" Width="518" Height="88" Background="{DynamicResource DefaultColor}" Foreground="White" FontFamily="Noto Sans Bold" FontSize="60" Click="RedirectButton_Click"/>
+            <Button x:Name="btnDoujinshiDownload" Content="Download" HorizontalAlignment="Left" Margin="713,481,0,0" VerticalAlignment="Top" Width="518" Height="88" Background="{DynamicResource DefaultColor}" Foreground="White" FontFamily="Noto Sans Bold" FontSize="60" Click="SaveButton_Click"/>
         </Grid>
 
         <Button x:Name="btnGithub" Click="RedirectButton_Click" Cursor="Hand" Margin="1085,591,20,20">

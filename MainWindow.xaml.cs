@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +21,10 @@ namespace NHentai_Doujinshi_Searcher
             InitializeComponent();
         }
 
+        /*
+         * CALLED WHEN USER CLICKS SEARCH BUTTON
+         * SETS SEARCH QUERY AND HANDLE SEARCH EXCEPTIONS
+         */
         private async void StartSearch(object sender, RoutedEventArgs e)
         {
             SettingMenu.Visibility = Visibility.Hidden;
@@ -41,6 +49,10 @@ namespace NHentai_Doujinshi_Searcher
             LoadResults();
         }
 
+        /*
+         * CALLED AFTER MAKING THE SEARCH
+         * SHOWS IN THE SCREAM THE DOUJINSHI COVER AND THE INFO (FAVOURITES, CODE AND NAME)
+         */
         private async void LoadResults()
         {
             string Title = Doujin.GetName();
@@ -50,8 +62,8 @@ namespace NHentai_Doujinshi_Searcher
 
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            bitmap.UriSource = new Uri(ImageURL, UriKind.Absolute);
-            bitmap.EndInit();
+            bitmap.UriSource = new Uri(ImageURL, UriKind.Absolute);     //ImageURL is the url for the cover of the doujinshi
+            bitmap.EndInit(); 
 
             DoujinshiCover.Source = bitmap;
             DoujinshiTitle.Text = Title;
@@ -63,6 +75,9 @@ namespace NHentai_Doujinshi_Searcher
             SearchResults.Visibility = Visibility.Visible;
         }
 
+        /* SHOWS THE SEARCH SETTINGS MENU
+         * AFTER SEARCHING THE SETTINGS WILL BE CLEARED
+         */
         private void ShowSettings(object sender, RoutedEventArgs e)
         {
             SearchResults.Visibility = Visibility.Hidden;
@@ -72,10 +87,9 @@ namespace NHentai_Doujinshi_Searcher
                 Doujin.ClearAll();
                 SettingMenu.Visibility = Visibility.Visible;
             }
-            else
-                SettingMenu.Visibility = Visibility.Hidden;
         }
 
+        //SHOWS THE MENU OF EACH CHECKBOX
         private void SettingsCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox chk = sender as CheckBox;
@@ -111,6 +125,7 @@ namespace NHentai_Doujinshi_Searcher
             }
         }
 
+        //HIDES THE MENU OF EACH CHECKBOX
         private void SettingsCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             CheckBox chk = sender as CheckBox;
@@ -146,6 +161,7 @@ namespace NHentai_Doujinshi_Searcher
             }
         }
 
+        //WHEN A TAG IS CLICKED CALLS THE ADDTAG METHOD
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -153,6 +169,7 @@ namespace NHentai_Doujinshi_Searcher
             Doujin.AddTag(tag.ToLower(), btn);
         }
 
+        //WHEN A TAG IS CLICKED CALLS THE EXCLUDETAG METHOD
         private void ExcludeButton_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -160,6 +177,7 @@ namespace NHentai_Doujinshi_Searcher
             Doujin.ExcludeTag(tag.ToLower(), btn);
         }
 
+        //WHEN A LANGUAGE IS CLICKED CALLS THE ADDLANGUAGE METHOD
         private void AddLanguage_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -167,6 +185,7 @@ namespace NHentai_Doujinshi_Searcher
             Doujin.AddLanguage(language.ToLower(), btn);
         }
 
+        //CALLED WHEN THE USER ENTERS A CUSTOM SEARCH AT AN ENTRY AND THEN PRESS THE BUTTON
         private void EntryButton_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -205,6 +224,7 @@ namespace NHentai_Doujinshi_Searcher
             }
         }
 
+        //CALLED WHEN USER PRESSES "NHENTAI/GITHUB/GO TO DOUJINSHI" BUTTON
         private void RedirectButton_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -229,6 +249,34 @@ namespace NHentai_Doujinshi_Searcher
                     }
             }
         }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e) {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            string filePath = "";
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    filePath = saveFileDialog.FileName;
+                }
+                catch (System.UnauthorizedAccessException)
+                {
+                    _ = MessageBox.Show("System.UnauthorizedAccessException", "NHentai Doujinshi Searcher", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+
+            if (filePath != "")
+            {
+                Doujin.Download(filePath);
+            }
+            else
+            {
+                _ = MessageBox.Show("Filename wasn't provided", "NHentai Doujinshi Searcher", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+        }
     }
 }
 
@@ -245,8 +293,12 @@ internal class Doujinshi
     private List<string> Parodies = new List<string>();
     private List<string> Languages = new List<string>();
 
-    private List<string> Info = new List<string>();
+    private List<string> CustomTags = new List<string>();
 
+    private List<string> Info = new List<string>();
+    private List<NHentaiSharp.Search.Page> Pages = new List<NHentaiSharp.Search.Page>();
+
+    //ADDS/REMOVES THE TAG TO THE LIST AND CHANGES BUTTON COLOR
     public void AddTag(string _tag, Button btn)
     {
         if (!LookingTags.Contains(_tag))
@@ -261,48 +313,52 @@ internal class Doujinshi
         }
     }
 
+    //ADDS/REMOVES THE TAG TO THE LIST (CUSTOM TAG)
     public void AddTag(string _tag)
     {
-        if (!LookingTags.Contains(_tag))
+        if (!CustomTags.Contains(_tag))
         {
-            LookingTags.Add(_tag);
+            CustomTags.Add(_tag);
         }
         else
         {
-            LookingTags.Remove(_tag);
+            CustomTags.Remove(_tag);
         }
     }
 
+    //ADDS/REMOVES THE TAG TO THE LIST AND CHANGES BUTTON COLOR
     public void ExcludeTag(string _tag, Button btn)
     {
         string tag = NHentaiSharp.Core.SearchClient.GetExcludeTag(_tag);
 
         if (!ExcludedTags.Contains(tag))
         {
-            LookingTags.Add(tag);
+            ExcludedTags.Add(tag);
             btn.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF2B2B2B"));
         }
         else
         {
-            LookingTags.Remove(tag);
+            ExcludedTags.Remove(tag);
             btn.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF595959"));
         }
     }
 
+    //ADDS/REMOVES THE TAG TO THE LIST (CUSTOM TAG)
     public void ExcludeTag(string _tag)
     {
         string tag = NHentaiSharp.Core.SearchClient.GetExcludeTag(_tag);
 
-        if (!ExcludedTags.Contains(tag))
+        if (!CustomTags.Contains(tag))
         {
-            LookingTags.Add(tag);
+            CustomTags.Add(tag);
         }
         else
         {
-            LookingTags.Remove(tag);
+            CustomTags.Remove(tag);
         }
     }
 
+    //ADDS THE CHARACTER TO THE LIST (CHARACTER ENTRY)
     public void AddCharacter(string _character)
     {
         string character = NHentaiSharp.Core.SearchClient.GetCategoryTag(_character, NHentaiSharp.Search.TagType.Character);
@@ -311,6 +367,7 @@ internal class Doujinshi
             Characters.Add(character);
     }
 
+    //ADDS THE PARODY TO THE LIST (PARODY ENTRY)
     public void AddParody(string _parody)
     {
         string parody = NHentaiSharp.Core.SearchClient.GetCategoryTag(_parody, NHentaiSharp.Search.TagType.Parody);
@@ -319,6 +376,7 @@ internal class Doujinshi
             Parodies.Add(parody);
     }
 
+    //ADDS THE LANGUAGE TO THE LIST (LANGUAGE ENTRY)
     public void AddLanguage(string _language, Button btn)
     {
         string language = NHentaiSharp.Core.SearchClient.GetCategoryTag(_language, NHentaiSharp.Search.TagType.Language);
@@ -335,8 +393,10 @@ internal class Doujinshi
         }
     }
 
+    //SETS ALL THE SEARCH QUERY
     public void SetInfo()
     {
+        Info.AddRange(CustomTags);
         Info.AddRange(LookingTags);
         Info.AddRange(ExcludedTags);
         Info.AddRange(Characters);
@@ -344,6 +404,7 @@ internal class Doujinshi
         Info.AddRange(Languages);
     }
 
+    //MAKES THE SEARCH AND THEN RETRIVES THE NAME, URL, COVER AND FAVORITES OF THE DOUJINSHI
     public async Task MakeSearch()
     {
         Random randomNumber = new Random();
@@ -358,6 +419,7 @@ internal class Doujinshi
         URL = doujinshi.url.ToString();
         Image = Convert.ToString(doujinshi.cover.imageUrl);
         Favourites = doujinshi.numFavorites;
+        Pages = doujinshi.pages.ToList();
     }
 
     public string GetName()
@@ -380,18 +442,40 @@ internal class Doujinshi
         return Convert.ToString(Favourites);
     }
 
+    //CLEARS ALL THE CUSTOMIZED INFO & THE SEARCH QUERY
     public void ClearAll()
     {
+        ClearList(CustomTags);
         ClearList(Characters);
         ClearList(Parodies);
         ClearList(Info);
     }
 
+    //CLEARS A LIST
     public void ClearList(List<string> toClear)
     {
         while (toClear.Count != 0)
         {
             toClear.RemoveAt(0);
         }
+    }
+
+    public void Download(string DownloadPath)
+    {
+        int DownloadedPages = 0;
+
+        foreach (NHentaiSharp.Search.Page currentPage in Pages)
+        {
+            string Path = DownloadPath + DownloadedPages.ToString() + "." + currentPage.format.ToString().ToLower();
+
+            using (WebClient client = new WebClient())
+            {
+                client.DownloadFile(new Uri(currentPage.imageUrl.ToString()), Path);
+            }
+
+            DownloadedPages += 1;
+        }
+
+        _ = MessageBox.Show("Download finished!", "NHentai Doujinshi Searcher", MessageBoxButton.OK, MessageBoxImage.Asterisk);
     }
 }
