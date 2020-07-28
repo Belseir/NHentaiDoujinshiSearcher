@@ -26,7 +26,7 @@ C# WPF Application for searching doujinshis at nhentai webpage.
   <li>Wait some seconds</li>
 </ol>
 
-<h2>Built with<h2>
+<h2>Built with</h2>
 <ul>
   <li>C# - Base programming language used</li>
   <li>WPF - Used for the UI of the application</li>
