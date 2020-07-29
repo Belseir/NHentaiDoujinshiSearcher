@@ -1,6 +1,4 @@
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Debug\NHentai Doujinshi Searcher.exe.config
-F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Debug\NHentai Doujinshi Searcher.exe.manifest
-F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Debug\NHentai Doujinshi Searcher.application
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Debug\NHentai Doujinshi Searcher.exe
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Debug\NHentai Doujinshi Searcher.pdb
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\bin\Debug\Newtonsoft.Json.dll
@@ -16,8 +14,7 @@ F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Do
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Debug\NHentai_Doujinshi_Searcher.Properties.Resources.resources
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Debug\NHentai Doujinshi Searcher.csproj.GenerateResource.cache
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Debug\NHentai Doujinshi Searcher.csproj.CoreCompileInputs.cache
-F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Debug\NHentai Doujinshi Searcher.exe.manifest
-F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Debug\NHentai Doujinshi Searcher.application
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Debug\NHentai Doujinshi Searcher.csproj.CopyComplete
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Debug\NHentai Doujinshi Searcher.exe
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Debug\NHentai Doujinshi Searcher.pdb
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Debug\App.baml

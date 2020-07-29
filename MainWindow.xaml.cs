@@ -7,6 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -67,6 +68,7 @@ namespace NHentai_Doujinshi_Searcher
 
             DoujinshiCover.Source = bitmap;
             DoujinshiTitle.Text = Title;
+            Page_Count.Text = "1/" + Doujin.numberPages.ToString();
             DoujinshiCode.Text = URL.Replace("https://nhentai.net/g/", "");
             DoujinshiFavourites.Text = Favourites;
 
@@ -277,6 +279,112 @@ namespace NHentai_Doujinshi_Searcher
                 return;
             }
         }
+
+        private void ChangeColors(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            string colorName = btn.Name;
+            SolidColorBrush selectedColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ec2854"));
+            SolidColorBrush selectedColorShadow = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#9C0728"));
+
+            switch (colorName)
+            {
+                case "DefaultColor":
+                    {
+                        selectedColor.Color = (Color)ColorConverter.ConvertFromString("#ec2854");
+                        selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#9C0728");
+                        break;
+                    }
+                case "FucsiaColor":
+                    {
+                        selectedColor.Color = (Color)ColorConverter.ConvertFromString("#c928ec"); //81079C
+                        selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#81079C");
+                        break;
+                    }
+                case "RedColor":
+                    {
+                        selectedColor.Color = (Color)ColorConverter.ConvertFromString("#ec2828"); //9C0707
+                        selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#9C0707");
+                        break;
+                    }
+                case "BlueColor":
+                    {
+                        selectedColor.Color = (Color)ColorConverter.ConvertFromString("#283aec"); //07169C
+                        selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#07169C");
+                        break;
+                    }
+                case "lightBlueColor":
+                    {
+                        selectedColor.Color = (Color)ColorConverter.ConvertFromString("#28e5ec"); //07979C
+                        selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#07979C");
+                        break;
+                    }
+                case "AquaColor":
+                    {
+                        selectedColor.Color = (Color)ColorConverter.ConvertFromString("#28ec97"); //079C5C
+                        selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#079C5C");
+                        break;
+                    }
+                case "GreenColor":
+                    {
+                        selectedColor.Color = (Color)ColorConverter.ConvertFromString("#28ec28"); //079C07
+                        selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#079C07");
+                        break;
+                    }
+                case "YellowColor":
+                    {
+                        selectedColor.Color = (Color)ColorConverter.ConvertFromString("#ecdc28"); //9C8F07
+                        selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#9C8F07");
+                        break;
+                    }
+                case "OrangeColor":
+                    {
+                        selectedColor.Color = (Color)ColorConverter.ConvertFromString("#ec9b28"); //9C5E07
+                        selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#9C5E07");
+                        break;
+                    }
+                case "PurpleColor":
+                    {
+                        selectedColor.Color = (Color)ColorConverter.ConvertFromString("#8428ec"); //4D079C
+                        selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#4D079C");
+                        break;
+                    }
+            }
+
+            Application.Current.Resources["CurrentColor"] = selectedColor;
+            Application.Current.Resources["CurrentColorShadow"] = selectedColorShadow;
+        }
+
+        private void readPage_Click(object sender, RoutedEventArgs e)
+        {
+            List<NHentaiSharp.Search.Page> DoujinshiPages = Doujin.GetPages();
+            Button buttonPressed = sender as Button;
+            string buttonName = buttonPressed.Name;
+
+            if (Doujin.currentPage != DoujinshiPages.Count && buttonName == "rightPage")
+            {
+                Doujin.currentPage++;
+                BitmapImage pageImage = new BitmapImage();
+                pageImage.BeginInit();
+                pageImage.UriSource = new Uri(DoujinshiPages[Doujin.currentPage].imageUrl.ToString(), UriKind.Absolute);
+                pageImage.EndInit();
+
+                DoujinshiCover.Source = pageImage;
+                Page_Count.Text = (Doujin.currentPage + 1).ToString() + "/" + Doujin.numberPages.ToString();
+            }
+            if (Doujin.currentPage != 0 && buttonName == "leftPage")
+            {
+                Doujin.currentPage--;
+
+                BitmapImage pageImage = new BitmapImage();
+                pageImage.BeginInit();
+                pageImage.UriSource = new Uri(DoujinshiPages[Doujin.currentPage].imageUrl.ToString(), UriKind.Absolute);
+                pageImage.EndInit();
+
+                DoujinshiCover.Source = pageImage;
+                Page_Count.Text = (Doujin.currentPage + 1).ToString() + "/" + Doujin.numberPages.ToString();
+            }
+        }
     }
 }
 
@@ -286,6 +394,8 @@ internal class Doujinshi
     private string URL;
     private string Image;
     private int Favourites;
+    public int currentPage = 0;
+    public int numberPages = 0;
 
     private List<string> LookingTags = new List<string>();
     private List<string> ExcludedTags = new List<string>();
@@ -419,7 +529,9 @@ internal class Doujinshi
         URL = doujinshi.url.ToString();
         Image = Convert.ToString(doujinshi.cover.imageUrl);
         Favourites = doujinshi.numFavorites;
+        currentPage = 0;
         Pages = doujinshi.pages.ToList();
+        numberPages = Pages.Count;
     }
 
     public string GetName()
@@ -440,6 +552,11 @@ internal class Doujinshi
     public string GetFavourites()
     {
         return Convert.ToString(Favourites);
+    }
+
+    public List<NHentaiSharp.Search.Page> GetPages()
+    {
+        return Pages;
     }
 
     //CLEARS ALL THE CUSTOMIZED INFO & THE SEARCH QUERY

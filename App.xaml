@@ -4,6 +4,75 @@
              xmlns:local="clr-namespace:NHentai_Doujinshi_Searcher"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="CurrentColor" Color="#ec2854"/>
+        <SolidColorBrush x:Key="CurrentColorShadow" Color="#9C0728"/>
+
+        <Style x:Key="{x:Type CheckBox}" TargetType="CheckBox">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Border x:Name="Border"  
+                                Width="25" 
+                                Height="25" 
+                                CornerRadius="3" 
+                                Background="{x:Null}"
+                                BorderThickness="2"
+                                BorderBrush="{DynamicResource CurrentColor}">
+                                    <Path 
+                                    Width="25" Height="25" 
+                                    x:Name="CheckMark"
+                                    SnapsToDevicePixels="False" 
+                                    Stroke="{DynamicResource CurrentColor}"
+                                    StrokeThickness="2"
+                                    Data="M5,5 L15,15 M5,15 L15,5"/>
+                                </Border>
+                            </BulletDecorator.Bullet>
+                            <ContentPresenter Margin="4,0,0,0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            RecognizesAccessKey="True"/>
+                        </BulletDecorator>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="false">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource CurrentColor}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource CurrentColorShadow}" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource CurrentColorShadow}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="Tag">
+            <Setter Property="Background" Value="#FF595959"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
     </Application.Resources>
 </Application>

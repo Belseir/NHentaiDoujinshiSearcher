@@ -60,10 +60,16 @@
     <ManifestKeyFile>NHentai FINAL FINAL_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -124,6 +130,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -154,19 +161,16 @@
     <Resource Include="GithubButton.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\DefaultColor\GithubButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\DefaultColor\SearchButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\DefaultColor\SettingsButton.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="SettingsButton.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SearchButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="LeftArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RightArrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

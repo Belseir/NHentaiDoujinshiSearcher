@@ -17,3 +17,4 @@ F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Do
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.csproj.CopyComplete
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.exe
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.pdb
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\App.baml
