@@ -286,73 +286,91 @@ namespace NHentai_Doujinshi_Searcher
             string colorName = btn.Name;
             SolidColorBrush selectedColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ec2854"));
             SolidColorBrush selectedColorShadow = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#9C0728"));
+            SolidColorBrush selectedColorPressed = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#510112"));
 
             switch (colorName)
             {
-                case "DefaultColor":
+                case "Default":
                     {
                         selectedColor.Color = (Color)ColorConverter.ConvertFromString("#ec2854");
                         selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#9C0728");
+                        selectedColorPressed.Color = (Color)ColorConverter.ConvertFromString("#510112");
                         break;
                     }
-                case "FucsiaColor":
+                case "Fucsia":
                     {
                         selectedColor.Color = (Color)ColorConverter.ConvertFromString("#c928ec"); //81079C
                         selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#81079C");
+                        selectedColorPressed.Color = (Color)ColorConverter.ConvertFromString("#420151");
                         break;
                     }
-                case "RedColor":
+                case "Red":
                     {
                         selectedColor.Color = (Color)ColorConverter.ConvertFromString("#ec2828"); //9C0707
                         selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#9C0707");
+                        selectedColorPressed.Color = (Color)ColorConverter.ConvertFromString("#510101");
                         break;
                     }
-                case "BlueColor":
+                case "Blue":
                     {
                         selectedColor.Color = (Color)ColorConverter.ConvertFromString("#283aec"); //07169C
                         selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#07169C");
+                        selectedColorPressed.Color = (Color)ColorConverter.ConvertFromString("#010951");
                         break;
                     }
-                case "lightBlueColor":
+                case "Light_Blue":
                     {
                         selectedColor.Color = (Color)ColorConverter.ConvertFromString("#28e5ec"); //07979C
                         selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#07979C");
+                        selectedColorPressed.Color = (Color)ColorConverter.ConvertFromString("#014E51");
                         break;
                     }
-                case "AquaColor":
+                case "Aqua":
                     {
                         selectedColor.Color = (Color)ColorConverter.ConvertFromString("#28ec97"); //079C5C
                         selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#079C5C");
+                        selectedColorPressed.Color = (Color)ColorConverter.ConvertFromString("#01512E");
                         break;
                     }
-                case "GreenColor":
+                case "Green":
                     {
                         selectedColor.Color = (Color)ColorConverter.ConvertFromString("#28ec28"); //079C07
                         selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#079C07");
+                        selectedColorPressed.Color = (Color)ColorConverter.ConvertFromString("#015101");
                         break;
                     }
-                case "YellowColor":
+                case "Yellow":
                     {
                         selectedColor.Color = (Color)ColorConverter.ConvertFromString("#ecdc28"); //9C8F07
                         selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#9C8F07");
+                        selectedColorPressed.Color = (Color)ColorConverter.ConvertFromString("#514A01");
                         break;
                     }
-                case "OrangeColor":
+                case "Orange":
                     {
                         selectedColor.Color = (Color)ColorConverter.ConvertFromString("#ec9b28"); //9C5E07
                         selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#9C5E07");
+                        selectedColorPressed.Color = (Color)ColorConverter.ConvertFromString("#512F01");
                         break;
                     }
-                case "PurpleColor":
+                case "Purple":
                     {
                         selectedColor.Color = (Color)ColorConverter.ConvertFromString("#8428ec"); //4D079C
                         selectedColorShadow.Color = (Color)ColorConverter.ConvertFromString("#4D079C");
+                        selectedColorPressed.Color = (Color)ColorConverter.ConvertFromString("#260151");
                         break;
                     }
             }
 
             Application.Current.Resources["CurrentColor"] = selectedColor;
             Application.Current.Resources["CurrentColorShadow"] = selectedColorShadow;
+            Application.Current.Resources["CurrentColorPressed"] = selectedColorPressed;
+            Application.Current.Resources["Search"] = new BitmapImage(new Uri("pack://application:,,,/NHentai Doujinshi Searcher;component/Images/" + colorName + "/SearchButton.png"));
+            Application.Current.Resources["Settings"] = new BitmapImage(new Uri("pack://application:,,,/NHentai Doujinshi Searcher;component/Images/" + colorName + "/SettingsButton.png"));
+            Application.Current.Resources["Github"] = new BitmapImage(new Uri("pack://application:,,,/NHentai Doujinshi Searcher;component/Images/" + colorName + "/GithubButton.png"));
+            Application.Current.Resources["LeftArrow"] = new BitmapImage(new Uri("pack://application:,,,/NHentai Doujinshi Searcher;component/Images/" + colorName + "/LeftArrow.png"));
+            Application.Current.Resources["RightArrow"] = new BitmapImage(new Uri("pack://application:,,,/NHentai Doujinshi Searcher;component/Images/" + colorName + "/RightArrow.png"));
+            Application.Current.Resources["NHentai"] = new BitmapImage(new Uri("pack://application:,,,/NHentai Doujinshi Searcher;component/Images/" + colorName + "/NHentaiButton.png"));
         }
 
         private void readPage_Click(object sender, RoutedEventArgs e)

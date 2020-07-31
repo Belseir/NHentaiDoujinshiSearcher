@@ -152,25 +152,91 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="NHentaiButton.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="GithubButton.png" />
+    <Resource Include="Images\Default\GithubButton.png" />
+    <Resource Include="Images\Default\LeftArrow.png" />
+    <Resource Include="Images\Default\RightArrow.png" />
+    <Resource Include="Images\Default\SearchButton.png" />
+    <Resource Include="Images\Default\SettingsButton.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SettingsButton.png" />
+    <Resource Include="Images\Fucsia\GithubButton.png" />
+    <Resource Include="Images\Fucsia\LeftArrow.png" />
+    <Resource Include="Images\Fucsia\RightArrow.png" />
+    <Resource Include="Images\Fucsia\SearchButton.png" />
+    <Resource Include="Images\Fucsia\SettingsButton.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SearchButton.png" />
+    <Resource Include="Images\Default\NHentaiButton.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="LeftArrow.png" />
+    <Resource Include="Images\Aqua\GithubButton.png" />
+    <Resource Include="Images\Aqua\LeftArrow.png" />
+    <Resource Include="Images\Aqua\NHentaiButton.png" />
+    <Resource Include="Images\Aqua\RightArrow.png" />
+    <Resource Include="Images\Aqua\SearchButton.png" />
+    <Resource Include="Images\Aqua\SettingsButton.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="RightArrow.png" />
+    <Resource Include="Images\Fucsia\NHentaiButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\green\GithubButton.png" />
+    <Resource Include="Images\green\LeftArrow.png" />
+    <Resource Include="Images\green\NHentaiButton.png" />
+    <Resource Include="Images\green\RightArrow.png" />
+    <Resource Include="Images\green\SearchButton.png" />
+    <Resource Include="Images\green\SettingsButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\light_blue\GithubButton.png" />
+    <Resource Include="Images\light_blue\LeftArrow.png" />
+    <Resource Include="Images\light_blue\NHentaiButton.png" />
+    <Resource Include="Images\light_blue\RightArrow.png" />
+    <Resource Include="Images\light_blue\SearchButton.png" />
+    <Resource Include="Images\light_blue\SettingsButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\orange\GithubButton.png" />
+    <Resource Include="Images\orange\LeftArrow.png" />
+    <Resource Include="Images\orange\NHentaiButton.png" />
+    <Resource Include="Images\orange\RightArrow.png" />
+    <Resource Include="Images\orange\SearchButton.png" />
+    <Resource Include="Images\orange\SettingsButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\purple\GithubButton.png" />
+    <Resource Include="Images\purple\LeftArrow.png" />
+    <Resource Include="Images\purple\NHentaiButton.png" />
+    <Resource Include="Images\purple\RightArrow.png" />
+    <Resource Include="Images\purple\SearchButton.png" />
+    <Resource Include="Images\purple\SettingsButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\red\GithubButton.png" />
+    <Resource Include="Images\red\LeftArrow.png" />
+    <Resource Include="Images\red\NHentaiButton.png" />
+    <Resource Include="Images\red\RightArrow.png" />
+    <Resource Include="Images\red\SearchButton.png" />
+    <Resource Include="Images\red\SettingsButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\yellow\GithubButton.png" />
+    <Resource Include="Images\yellow\LeftArrow.png" />
+    <Resource Include="Images\yellow\NHentaiButton.png" />
+    <Resource Include="Images\yellow\RightArrow.png" />
+    <Resource Include="Images\yellow\SearchButton.png" />
+    <Resource Include="Images\yellow\SettingsButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\blue\GithubButton.png" />
+    <Resource Include="Images\blue\LeftArrow.png" />
+    <Resource Include="Images\blue\NHentaiButton.png" />
+    <Resource Include="Images\blue\RightArrow.png" />
+    <Resource Include="Images\blue\SearchButton.png" />
+    <Resource Include="Images\blue\SettingsButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

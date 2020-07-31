@@ -6,6 +6,13 @@
     <Application.Resources>
         <SolidColorBrush x:Key="CurrentColor" Color="#ec2854"/>
         <SolidColorBrush x:Key="CurrentColorShadow" Color="#9C0728"/>
+        <SolidColorBrush x:Key="CurrentColorPressed" Color="#510112"/>
+        <ImageSource x:Key="Search">/Images/Default/SearchButton.png</ImageSource>
+        <ImageSource x:Key="Settings">/Images/Default/SettingsButton.png</ImageSource>
+        <ImageSource x:Key="Github">/Images/Default/GithubButton.png</ImageSource>
+        <ImageSource x:Key="LeftArrow">/Images/Default/LeftArrow.png</ImageSource>
+        <ImageSource x:Key="RightArrow">/Images/Default/RightArrow.png</ImageSource>
+        <ImageSource x:Key="NHentai">/Images/Default/NHentaiButton.png</ImageSource>
 
         <Style x:Key="{x:Type CheckBox}" TargetType="CheckBox">
             <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -74,5 +81,43 @@
             </Style.Resources>
         </Style>
 
+        <Style TargetType="{x:Type Button}" x:Key="normalButton">
+            <Setter Property="Background" Value="{DynamicResource CurrentColor}"/>
+            <Setter Property="FontSize" Value="60"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="518"/>
+            <Setter Property="Height" Value="88"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{DynamicResource ResourceKey=CurrentColorShadow}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{DynamicResource ResourceKey=CurrentColorPressed}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource ResourceKey=CurrentColorPressed}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="#FF838383"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

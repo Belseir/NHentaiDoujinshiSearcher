@@ -8,6 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("rightarrow.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/blue/githubbutton.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/blue/leftarrow.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/blue/nhentaibutton.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/blue/rightarrow.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/blue/searchbutton.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/blue/settingsbutton.png")]
 
 
