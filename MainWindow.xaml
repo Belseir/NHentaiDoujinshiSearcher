@@ -58,7 +58,7 @@
             </Button>
         </Grid>
 
-        <Grid x:Name="SettingMenu" Visibility="Visible">
+        <Grid x:Name="SettingMenu" Visibility="Hidden">
             <Grid x:Name="Settings" Margin="1060,0,0,497">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
