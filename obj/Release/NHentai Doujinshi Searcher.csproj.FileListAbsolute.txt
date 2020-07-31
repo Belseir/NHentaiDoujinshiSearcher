@@ -9,6 +9,7 @@ F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Do
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\App.g.cs
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher_MarkupCompile.cache
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher_MarkupCompile.lref
+F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\App.baml
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\MainWindow.baml
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.g.resources
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai_Doujinshi_Searcher.Properties.Resources.resources
@@ -17,4 +18,3 @@ F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Do
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.csproj.CopyComplete
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.exe
 F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\NHentai Doujinshi Searcher.pdb
-F:\Desarrollo\VisualStudioCode\C#\Projects\NHentai Doujinshi Searcher\NHentai Doujinshi Searcher\obj\Release\App.baml
