@@ -34,7 +34,10 @@ namespace NHentai_Doujinshi_Searcher
 
             try
             {
-                await Doujin.MakeSearch();
+                if (SearchByTags.IsChecked == true)
+                    await Doujin.MakeSearch();
+                else if (SearchByCode.IsChecked == true)
+                    await Doujin.MakeSearch(Int32.Parse(CodeEntry.Text));
             }
             catch (NHentaiSharp.Exception.InvalidArgumentException)
             {
@@ -88,6 +91,9 @@ namespace NHentai_Doujinshi_Searcher
             {
                 Doujin.ClearAll();
                 SettingMenu.Visibility = Visibility.Visible;
+
+                if (SearchByTags.IsChecked == false)
+                    Settings.Visibility = Visibility.Hidden;
             }
         }
 
@@ -403,6 +409,44 @@ namespace NHentai_Doujinshi_Searcher
                 Page_Count.Text = (Doujin.currentPage + 1).ToString() + "/" + Doujin.numberPages.ToString();
             }
         }
+
+        private void SearchMode_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            string btnContent = button.Content.ToString();
+           
+            if(btnContent == "Search By Code") {
+                CodeEntry.Visibility = Visibility.Visible;
+            } else {
+                Settings.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void SearchMode_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            string btnContent = button.Content.ToString();
+
+            if (btnContent == "Search By Code")
+            {
+                CodeEntry.Visibility = Visibility.Hidden;
+                AddTags.IsChecked = false;
+                ExcludeTags.IsChecked = false;
+                AddCharacters.IsChecked = false;
+                AddParodies.IsChecked = false;
+                AddLanguages.IsChecked = false;
+            }
+            else
+            {
+                CodeEntry.Text = "";
+                Settings.Visibility = Visibility.Hidden;
+                Add_Tags.Visibility = Visibility.Hidden;
+                Exclude_Tags.Visibility = Visibility.Hidden;
+                Add_Character.Visibility = Visibility.Hidden;
+                Add_Parody.Visibility = Visibility.Hidden;
+                Add_Language.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }
 
@@ -551,7 +595,21 @@ internal class Doujinshi
         Pages = doujinshi.pages.ToList();
         numberPages = Pages.Count;
     }
+    public async Task MakeSearch(int id)
+    {
+        Random randomNumber = new Random();
+        string[] SearchQuery = Info.ToArray();
 
+        var doujinshi = await NHentaiSharp.Core.SearchClient.SearchByIdAsync(id);
+
+        Name = doujinshi.prettyTitle.ToString();
+        URL = doujinshi.url.ToString();
+        Image = Convert.ToString(doujinshi.cover.imageUrl);
+        Favourites = doujinshi.numFavorites;
+        currentPage = 0;
+        Pages = doujinshi.pages.ToList();
+        numberPages = Pages.Count;
+    }
     public string GetName()
     {
         return Name;

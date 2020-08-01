@@ -17,6 +17,7 @@
         <Style x:Key="{x:Type CheckBox}" TargetType="CheckBox">
             <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="FontFamily" Value="Noto Sans Bold"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
@@ -68,6 +69,7 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Noto Sans Bold"/>
             <Setter Property="Width" Value="90"/>
             <Setter Property="Height" Value="25"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -86,6 +88,7 @@
             <Setter Property="FontSize" Value="60"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Noto Sans Bold"/>
             <Setter Property="Width" Value="518"/>
             <Setter Property="Height" Value="88"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -113,6 +116,32 @@
                                 <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
                                 <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
                                 <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="#FF838383"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type RadioButton}" x:Key="CustomRadio">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <BulletDecorator Background="Transparent" Cursor="Hand">
+                            <BulletDecorator.Bullet>
+                                <Grid Height="24" Width="24">
+                                    <Border Name="RadioOuter" Background="Transparent" BorderBrush="{DynamicResource CurrentColor}" BorderThickness="2" CornerRadius="16" />
+                                    <Border CornerRadius="8" Margin="4" Name="RadioMark" Background="{DynamicResource CurrentColor}" Visibility="Hidden" />
+                                </Grid>
+                            </BulletDecorator.Bullet>
+                            <TextBlock Margin="3,1,0,0" Foreground="{DynamicResource CurrentColor}" FontFamily="Noto Sans Bold" FontSize="20">
+                        <ContentPresenter />
+                            </TextBlock>
+                        </BulletDecorator>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter TargetName="RadioMark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="RadioOuter" Property="BorderBrush" Value="{DynamicResource ResourceKey=CurrentColorPressed}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

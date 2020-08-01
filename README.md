@@ -47,5 +47,6 @@ C# WPF Application for searching doujinshis at nhentai webpage.
   <li><strike>Change colors of the UI</strike></li>
   <li><strike>Read the doujinshi on the application</strike></li>
   <li><strike>Fix buttons not changing color</strike></li>
-  <li>Search doujinshi through ID/Code</li>
+  <li><strike>Search doujinshi through ID/Code</strike></li>
+  <li>Access to previous searched doujinshis may be?</li>
 </ul>

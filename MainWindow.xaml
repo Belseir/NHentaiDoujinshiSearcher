@@ -59,25 +59,30 @@
         </Grid>
 
         <Grid x:Name="SettingMenu" Visibility="Hidden">
-            <Grid x:Name="Settings" Margin="1060,0,0,497">
+            <RadioButton x:Name="SearchByTags" Style="{DynamicResource CustomRadio}" Content="Search By Tags" HorizontalAlignment="Left" Margin="1076,118,0,0" VerticalAlignment="Top" Height="32" Width="179" Checked="SearchMode_Checked" Unchecked="SearchMode_Unchecked"/>
+            <RadioButton x:Name="SearchByCode" Style="{DynamicResource CustomRadio}" Content="Search By Code" HorizontalAlignment="Left" Margin="1076,38,0,0" VerticalAlignment="Top" Height="30" Width="183" Checked="SearchMode_Checked" Unchecked="SearchMode_Unchecked"/>
+            <TextBox x:Name="CodeEntry" Margin="1075,71,15,586" Foreground="White" Background="{DynamicResource CurrentColor}" BorderBrush="Black" FontWeight="Bold" TextAlignment="Center" FontSize="16" Visibility="Hidden"/>
+
+            <Grid x:Name="Settings" Margin="1066,145,-6,382" Visibility="Hidden">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65*"/>
+                    <ColumnDefinition Width="42*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-
-                <Label Content="Settings" FontFamily="Noto Sans Bold" Foreground="{DynamicResource CurrentColor}" FontWeight="UltraBold" Margin="61,-11,25,23" FontSize="24" Grid.RowSpan="2"/>
-                <CheckBox x:Name="AddTags" Content="Add tags" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Top" Grid.Row="1" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource CurrentColor}" FontSize="16" Width="146" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked"/>
-                <CheckBox x:Name="ExcludeTags" Content="Exclude tags" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Top" Grid.Row="2" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource CurrentColor}" FontSize="16" Width="185" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked"/>
-                <CheckBox x:Name="AddCharacters" Content="Add characters" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Top" Grid.Row="3" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource CurrentColor}" FontSize="16" Width="219" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked"/>
-                <CheckBox x:Name="AddParodies" Content="Add parodies" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Top" Grid.Row="4" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource CurrentColor}" FontSize="16" Width="192" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked"/>
-                <CheckBox x:Name="AddLanguages" Content="Add languages" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Top" Grid.Row="5" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource CurrentColor}" FontSize="16" Width="209" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked"/>
+                <CheckBox x:Name="AddTags" Content="Add tags" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Top" Grid.Row="0" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource CurrentColor}" FontSize="16" Width="146" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked" Grid.ColumnSpan="2"/>
+                <CheckBox x:Name="ExcludeTags" Content="Exclude tags" HorizontalAlignment="Left" Margin="40,5,-11,0" VerticalAlignment="Top" Grid.Row="1" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource CurrentColor}" FontSize="16" Width="185" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked" Grid.ColumnSpan="2"/>
+                <CheckBox x:Name="AddCharacters" Content="Add characters" HorizontalAlignment="Left" Margin="40,5,-45,0" VerticalAlignment="Top" Grid.Row="2" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource CurrentColor}" FontSize="16" Width="219" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked" Grid.ColumnSpan="2"/>
+                <CheckBox x:Name="AddParodies" Content="Add parodies" HorizontalAlignment="Left" Margin="40,5,-18,0" VerticalAlignment="Top" Grid.Row="3" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource CurrentColor}" FontSize="16" Width="192" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked" Grid.ColumnSpan="2"/>
+                <CheckBox x:Name="AddLanguages" Content="Add languages" HorizontalAlignment="Left" Margin="40,5,-35,0" VerticalAlignment="Top" Grid.Row="4" FontFamily="#Noto Sans Bold" FontWeight="Bold" Foreground="{DynamicResource CurrentColor}" FontSize="16" Width="209" Checked="SettingsCheckBox_Checked" Unchecked="SettingsCheckBox_Unchecked" Grid.ColumnSpan="2"/>
             </Grid>
 
-            <Grid x:Name="Add_Tags" Margin="262,-10,628,223" Visibility="Hidden">
+            <Grid x:Name="Add_Tags" Margin="237,-10,653,223" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="94"/>
                     <ColumnDefinition Width="94"/>
@@ -161,7 +166,7 @@
                 <Button x:Name="CustomAdd" Style="{StaticResource Tag}" Content="Add Custom Tag" Margin="2,1,0,0" Grid.Row="15" Grid.ColumnSpan="2" Grid.Column="1" Height="27" Width="185" Click="EntryButton_Click"/>
             </Grid>
 
-            <Grid x:Name="Exclude_Tags" Margin="702,-10,188,223" Visibility="Hidden">
+            <Grid x:Name="Exclude_Tags" Margin="677,-10,213,223" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="94"/>
                     <ColumnDefinition Width="94"/>
@@ -246,18 +251,18 @@
             </Grid>
 
             <Grid x:Name="Add_Character" Visibility="Hidden">
-                <Label Content="Character" FontFamily="Noto Sans Bold" Foreground="{DynamicResource CurrentColor}" FontWeight="UltraBold" Margin="380,456,749,187" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
-                <TextBox x:Name="CharacterEntry" Margin="270,494,640,167" Foreground="White" Background="{DynamicResource CurrentColor}" BorderBrush="Black" FontWeight="Bold" TextAlignment="Center"/>
-                <Button x:Name="CharacterAdd" Style="{StaticResource Tag}" Content="Add Character" Margin="360,529,0,0" Height="27" Width="184" Click="EntryButton_Click"/>
+                <Label Content="Character" FontFamily="Noto Sans Bold" Foreground="{DynamicResource CurrentColor}" FontWeight="UltraBold" Margin="355,456,774,187" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
+                <TextBox x:Name="CharacterEntry" Margin="245,494,665,167" Foreground="White" Background="{DynamicResource CurrentColor}" BorderBrush="Black" FontWeight="Bold" TextAlignment="Center"/>
+                <Button x:Name="CharacterAdd" Style="{StaticResource Tag}" Content="Add Character" Margin="335,529,0,0" Height="27" Width="184" Click="EntryButton_Click"/>
             </Grid>
 
             <Grid x:Name="Add_Parody" Visibility="Hidden">
-                <Label Content="Parody" FontFamily="Noto Sans Bold" Foreground="{DynamicResource CurrentColor}" FontWeight="UltraBold" Margin="839,456,329,179" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
-                <TextBox x:Name="ParodyEntry" Margin="710,494,200,167" Foreground="White" Background="{DynamicResource CurrentColor}" BorderBrush="Black" FontWeight="Bold" TextAlignment="Center"/>
-                <Button x:Name="ParodyAdd" Style="{StaticResource Tag}" Content="Add Parody" Margin="800,529,0,0" Height="27" Width="184" Click="EntryButton_Click"/>
+                <Label Content="Parody" FontFamily="Noto Sans Bold" Foreground="{DynamicResource CurrentColor}" FontWeight="UltraBold" Margin="814,456,354,179" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
+                <TextBox x:Name="ParodyEntry" Margin="685,494,225,167" Foreground="White" Background="{DynamicResource CurrentColor}" BorderBrush="Black" FontWeight="Bold" TextAlignment="Center"/>
+                <Button x:Name="ParodyAdd" Style="{StaticResource Tag}" Content="Add Parody" Margin="775,529,0,0" Height="27" Width="184" Click="EntryButton_Click"/>
             </Grid>
 
-            <Grid x:Name="Add_Language" Margin="531,561,448,48" Visibility="Hidden">
+            <Grid x:Name="Add_Language" Margin="506,561,473,48" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="94"/>
                     <ColumnDefinition Width="94"/>
@@ -274,7 +279,7 @@
                 <Button Style="{StaticResource Tag}" Margin="2,2,0,0" Grid.Row="1" Grid.Column="2" Content="Chinese" Click="AddLanguage_Click"/>
             </Grid>
 
-            <Grid x:Name="ColorsMenu" Margin="1102,285,12,110" Visibility="Visible">
+            <Grid x:Name="ColorsMenu" Margin="1099,309,15,86" Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="75"/>
                     <ColumnDefinition Width="75"/>
@@ -301,6 +306,7 @@
                 <Button x:Name="Purple" Margin="4,11,34,49" Grid.Row="4" Background="#FF8428EC" BorderBrush="White" Click="ChangeColors" Grid.Column="1" Grid.RowSpan="2"/>
 
             </Grid>
+            <Label Content="Settings" FontFamily="Noto Sans Bold" Foreground="{DynamicResource CurrentColor}" FontWeight="UltraBold" Margin="1115,0,31,641" FontSize="24"/>
         </Grid>
 
         <Grid x:Name="SearchResults" Visibility="Hidden">
