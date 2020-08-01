@@ -17,6 +17,15 @@ C# WPF Application for searching doujinshis at nhentai webpage.
   <li>If you want to open the doujinshi simple click the "Go To Doujinshi" button</li>
 </ol>
 
+<h3>How to search by ID/Code</h3>
+<ol>
+  <li>Click "Search Settings" button</li>
+  <li>Check the "Search By Code" radio button</li>
+  <li>Type the Id/Code of the doujinshi on the entry below the radio button</li>
+  <li>Click "Search" button and wait some seconds</li>
+  <li>If you want to open the doujinshi simple click the "Go To Doujinshi" button</li>
+</ol>
+
 <h3>How to download the doujinshi</h3>
 <ol>
   <li>After making the search, click the "Download" button</li>
