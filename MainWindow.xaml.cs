@@ -379,13 +379,13 @@ namespace NHentai_Doujinshi_Searcher
             Application.Current.Resources["NHentai"] = new BitmapImage(new Uri("pack://application:,,,/NHentai Doujinshi Searcher;component/Images/" + colorName + "/NHentaiButton.png"));
         }
 
-        private void readPage_Click(object sender, RoutedEventArgs e)
+        private void ReadPage_Click(object sender, RoutedEventArgs e)
         {
             List<NHentaiSharp.Search.Page> DoujinshiPages = Doujin.GetPages();
             Button buttonPressed = sender as Button;
             string buttonName = buttonPressed.Name;
 
-            if (Doujin.currentPage != DoujinshiPages.Count && buttonName == "rightPage")
+            if (Doujin.currentPage != (DoujinshiPages.Count - 1) && buttonName == "rightPage")
             {
                 Doujin.currentPage++;
                 BitmapImage pageImage = new BitmapImage();

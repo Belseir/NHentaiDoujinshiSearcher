@@ -320,7 +320,7 @@
             <Button Style="{StaticResource normalButton}" x:Name="btnDoujinshiGo" Content="Go To Doujinshi" Margin="713,371,0,0" Click="RedirectButton_Click"/>
             <Button Style="{StaticResource normalButton}" x:Name="btnDoujinshiDownload" Content="Download" Margin="713,481,0,0" Click="SaveButton_Click"/>
 
-            <Button x:Name="leftPage" Cursor="Hand" Margin="370,637,874,0" Click="readPage_Click">
+            <Button x:Name="leftPage" Cursor="Hand" Margin="370,637,874,0" Click="ReadPage_Click">
                 <Button.Template>
                     <ControlTemplate>
                         <Border HorizontalAlignment="Center" VerticalAlignment="Center" Height="108" Margin="0,0,0,0" Width="96">
@@ -330,7 +330,7 @@
                 </Button.Template>
             </Button>
 
-            <Button x:Name="rightPage" Cursor="Hand" Margin="520,637,724,0" Click="readPage_Click">
+            <Button x:Name="rightPage" Cursor="Hand" Margin="520,637,724,0" Click="ReadPage_Click">
                 <Button.Template>
                     <ControlTemplate>
                         <Border HorizontalAlignment="Center" VerticalAlignment="Center" Height="108" Margin="0,0,0,0" Width="96">
